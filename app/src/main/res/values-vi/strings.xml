@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name">Quản Lý Lịch Trình</string>
+    <string name="welcome_message">Chào mừng đến với Quản Lý Lịch Trình</string>
+    <string name="get_started">Bắt Đầu</string>
+    <string name="enter_name_hint">Nhập tên của bạn</string>
+    <string name="name_required">Vui lòng nhập tên</string>
+
+    <string name="tab_today">Hôm nay</string>
+    <string name="tab_weekly">Hàng tuần</string>
+    <string name="tab_all">Tất cả</string>
+
+    <string name="nav_home">Trang chủ</string>
+    <string name="nav_calendar">Lịch</string>
+    <string name="nav_settings">Cài đặt</string>
+    <string name="nav_backup">Sao lưu &amp; Khôi phục</string>
+
+    <string name="add_schedule">Thêm Lịch Trình</string>
+    <string name="edit_schedule">Sửa Lịch Trình</string>
+    <string name="title_hint">Tiêu đề</string>
+    <string name="description_hint">Mô tả</string>
+    <string name="pick_date">Chọn Ngày</string>
+    <string name="pick_start_time">Giờ Bắt Đầu</string>
+    <string name="pick_end_time">Giờ Kết Thúc</string>
+    <string name="priority_label">Mức Độ Ưu Tiên</string>
+    <string name="reminder_label">Nhắc Nhở</string>
+    <string name="save">Lưu</string>
+    <string name="cancel">Hủy</string>
+    <string name="delete">Xóa</string>
+    <string name="share">Chia sẻ</string>
+
+    <string name="delete_confirm_title">Xóa Lịch Trình?</string>
+    <string name="delete_confirm_msg">Bạn có chắc chắn muốn xóa lịch trình này không?</string>
+    <string name="yes">Có</string>
+    <string name="no">Không</string>
+
+    <string name="export_to_file">Xuất ra File</string>
+    <string name="import_from_file">Nhập từ File</string>
+    <string name="last_backup">Sao lưu lần cuối: %s</string>
+    <string name="backup_success">Sao lưu thành công!</string>
+    <string name="backup_failed">Sao lưu thất bại</string>
+    <string name="restore_success">Khôi phục thành công!</string>
+    <string name="restore_failed">Khôi phục thất bại</string>
+
+    <string name="error_invalid_time">Giờ kết thúc phải sau giờ bắt đầu</string>
+    <string name="warning">Cảnh báo</string>
+    <string name="past_date_warning">Ngày này đã trôi qua. Bạn có muốn tiếp tục không?</string>
+    <string name="proceed">Tiếp tục</string>
+    <string name="warning_past_date">Cảnh báo: Ngày này đã trong quá khứ</string>
+
+    <string name="reminder_none">Không có</string>
+    <string name="reminder_5min">5 Phút</string>
+    <string name="reminder_10min">10 Phút</string>
+    <string name="reminder_15min">15 Phút</string>
+    <string name="reminder_30min">30 Phút</string>
+    <string name="reminder_60min">1 Giờ</string>
+
+    <string name="no_schedules">Không tìm thấy lịch trình</string>
+    <string name="no_schedules_date">Không có lịch trình cho ngày này</string>
+    <string name="time_date_label">Thời gian &amp; Ngày</string>
+    <string name="reminder_info_label">Nhắc nhở</string>
+    <string name="description_label">Mô tả</string>
+    <string name="no_description">Không có mô tả</string>
+    <string name="mark_completed">Đánh dấu Hoàn thành</string>
+    <string name="mark_incomplete">Đánh dấu Chưa hoàn thành</string>
+    <string name="never">Chưa bao giờ</string>
+    <string name="schedule_deleted">Đã xóa lịch trình</string>
+    <string name="undo">Hoàn tác</string>
+    <string name="backup_never">Chưa bao giờ</string>
+    <string name="error_saving_schedule">Lỗi khi lưu lịch trình</string>
+    <string name="error_loading_schedules">Lỗi khi tải lịch trình</string>
+
+    <string name="language_title">Ngôn ngữ</string>
+    <string name="language_summary">Chọn ngôn ngữ ưu tiên của bạn</string>
+    <string name="language_en">English</string>
+    <string name="language_vi">Tiếng Việt</string>
+</resources>
