@@ -27,7 +27,7 @@ public class ReminderScheduler {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         if (alarmManager == null) return;
 
-        Calendar calendar = DateTimeUtils.getCalendar(schedule.getDate(), schedule.getStartTime());
+        Calendar calendar = DateTimeUtils.getCalendar(schedule.getDate(), schedule.getStartTime(), context);
         calendar.add(Calendar.MINUTE, -schedule.getReminderMinutes());
 
         if (calendar.getTimeInMillis() <= System.currentTimeMillis()) {
@@ -63,6 +63,41 @@ public class ReminderScheduler {
         }
 
         Log.d(TAG, "Scheduled reminder for ID " + schedule.getId() + " at " + calendar.getTime());
+    }
+
+    @SuppressLint("ScheduleExactAlarm")
+    public static void scheduleCustomReminder(Context context, Schedule schedule, long timeInMillis) {
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        if (alarmManager == null) return;
+
+        Intent intent = new Intent(context, ReminderReceiver.class);
+        intent.putExtra(IntentKeys.EXTRA_SCHEDULE_ID, schedule.getId());
+        intent.putExtra(IntentKeys.EXTRA_SCHEDULE, schedule);
+
+        int flags = PendingIntent.FLAG_UPDATE_CURRENT;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            flags |= PendingIntent.FLAG_IMMUTABLE;
+        }
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                context,
+                schedule.getId(),
+                intent,
+                flags
+        );
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            if (alarmManager.canScheduleExactAlarms()) {
+                alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent);
+            } else {
+                alarmManager.set(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent);
+            }
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent);
+        } else {
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent);
+        }
+        Log.d(TAG, "Scheduled custom reminder for ID " + schedule.getId() + " at " + timeInMillis);
     }
 
     public static void cancelReminder(Context context, int scheduleId) {

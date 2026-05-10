@@ -20,6 +20,8 @@ public class Schedule implements Parcelable {
     private boolean isCompleted;
     private int reminderMinutes;
     private String createdAt;
+    private String customCategory;
+    private String attachmentPath;
 
     public Schedule() {
     }
@@ -40,6 +42,8 @@ public class Schedule implements Parcelable {
         isCompleted = in.readByte() != 0;
         reminderMinutes = in.readInt();
         createdAt = in.readString();
+        customCategory = in.readString();
+        attachmentPath = in.readString();
     }
 
     public static final Creator<Schedule> CREATOR = new Creator<Schedule>() {
@@ -68,6 +72,8 @@ public class Schedule implements Parcelable {
         dest.writeByte((byte) (isCompleted ? 1 : 0));
         dest.writeInt(reminderMinutes);
         dest.writeString(createdAt);
+        dest.writeString(customCategory);
+        dest.writeString(attachmentPath);
     }
 
     @Override
@@ -75,7 +81,6 @@ public class Schedule implements Parcelable {
         return 0;
     }
 
-    // Getters and Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
@@ -112,6 +117,12 @@ public class Schedule implements Parcelable {
     public String getCreatedAt() { return createdAt; }
     public void setCreatedAt(String createdAt) { this.createdAt = createdAt; }
 
+    public String getCustomCategory() { return customCategory; }
+    public void setCustomCategory(String customCategory) { this.customCategory = customCategory; }
+
+    public String getAttachmentPath() { return attachmentPath; }
+    public void setAttachmentPath(String attachmentPath) { this.attachmentPath = attachmentPath; }
+
     @NonNull
     @Override
     public String toString() {
@@ -137,17 +148,18 @@ public class Schedule implements Parcelable {
                 Objects.equals(date, schedule.date) &&
                 Objects.equals(startTime, schedule.startTime) &&
                 Objects.equals(endTime, schedule.endTime) &&
-                priority == schedule.priority;
+                priority == schedule.priority &&
+                category == schedule.category &&
+                recurrence == schedule.recurrence &&
+                Objects.equals(customCategory, schedule.customCategory) &&
+                Objects.equals(attachmentPath, schedule.attachmentPath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, description, date, startTime, endTime, priority, isCompleted, reminderMinutes);
+        return Objects.hash(id, title, description, date, startTime, endTime, priority, category, recurrence, isCompleted, reminderMinutes, customCategory, attachmentPath);
     }
 
-    /**
-     * Builder pattern for Schedule
-     */
     public static class Builder {
         private final Schedule schedule = new Schedule();
 
@@ -163,6 +175,8 @@ public class Schedule implements Parcelable {
         public Builder isCompleted(boolean isCompleted) { schedule.isCompleted = isCompleted; return this; }
         public Builder reminderMinutes(int reminderMinutes) { schedule.reminderMinutes = reminderMinutes; return this; }
         public Builder createdAt(String createdAt) { schedule.createdAt = createdAt; return this; }
+        public Builder customCategory(String customCategory) { schedule.customCategory = customCategory; return this; }
+        public Builder attachmentPath(String attachmentPath) { schedule.attachmentPath = attachmentPath; return this; }
 
         public Schedule build() { return schedule; }
     }

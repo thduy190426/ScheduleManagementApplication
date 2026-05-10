@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardSchedule"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="8dp"
     android:layout_marginVertical="4dp"
+    android:transitionName="schedule_card_transition"
+    app:cardBackgroundColor="@color/background_card"
     app:cardElevation="2dp"
     app:cardCornerRadius="8dp">
 
@@ -34,6 +37,7 @@
                 android:layout_height="wrap_content"
                 android:text="Schedule Title"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/text_primary"
                 android:textStyle="bold" />
 
             <TextView
@@ -42,19 +46,47 @@
                 android:layout_height="wrap_content"
                 android:text="08:00 - 09:00"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="@color/secondary" />
+                android:textColor="@color/text_secondary" />
 
-            <TextView
-                android:id="@+id/tvCategory"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:paddingHorizontal="6dp"
-                android:paddingVertical="2dp"
-                android:background="@drawable/bg_category_chip"
-                android:text="Work"
-                android:textSize="10sp"
-                android:textColor="@color/white" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="2dp">
+
+                <TextView
+                    android:id="@+id/tvCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="6dp"
+                    android:paddingVertical="2dp"
+                    android:background="@drawable/bg_category_chip"
+                    android:text="Work"
+                    android:textSize="10sp"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:paddingHorizontal="6dp"
+                    android:paddingVertical="2dp"
+                    android:text="@string/overdue"
+                    android:textSize="10sp"
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/ivHasAttachment"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@android:drawable/ic_menu_gallery"
+                    app:tint="@color/secondary"
+                    android:visibility="gone" />
+            </LinearLayout>
 
         </LinearLayout>
 

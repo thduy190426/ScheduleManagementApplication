@@ -3,6 +3,7 @@ package com.example.schedulemanager.utils;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.LocaleList;
 
 import java.util.Locale;
@@ -10,7 +11,7 @@ import java.util.Locale;
 public class LocaleHelper {
 
     public static Context onAttach(Context context) {
-        String lang = getPersistedData(context, Locale.getDefault().getLanguage());
+        String lang = getPersistedData(context);
         return setLocale(context, lang);
     }
 
@@ -19,7 +20,7 @@ public class LocaleHelper {
         return updateResources(context, language);
     }
 
-    private static String getPersistedData(Context context, String defaultLanguage) {
+    private static String getPersistedData(Context context) {
         PreferenceManager prefManager = new PreferenceManager(context);
         return prefManager.getLanguage();
     }
@@ -33,14 +34,20 @@ public class LocaleHelper {
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
 
-        Resources resources = context.getResources();
-        Configuration configuration = resources.getConfiguration();
-        configuration.setLocale(locale);
+        Resources res = context.getResources();
+        Configuration config = new Configuration(res.getConfiguration());
         
-        LocaleList localeList = new LocaleList(locale);
-        LocaleList.setDefault(localeList);
-        configuration.setLocales(localeList);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            config.setLocale(locale);
+            LocaleList localeList = new LocaleList(locale);
+            LocaleList.setDefault(localeList);
+            config.setLocales(localeList);
+        } else {
+            config.setLocale(locale);
+        }
 
-        return context.createConfigurationContext(configuration);
+        res.updateConfiguration(config, res.getDisplayMetrics());
+
+        return context.createConfigurationContext(config);
     }
 }

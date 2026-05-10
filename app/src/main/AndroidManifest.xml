@@ -25,6 +25,9 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
         </activity>
 
         <activity android:name=".activities.OnboardingActivity" />
@@ -35,10 +38,9 @@
         <activity android:name=".activities.SettingsActivity" />
         <activity android:name=".activities.BackupActivity" />
         <activity android:name=".activities.StatisticsActivity" />
-
-        <service
-            android:name=".services.ReminderService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <activity android:name=".activities.PinLockActivity" />
+        <activity android:name=".activities.CategoryManagementActivity" />
+        <activity android:name=".activities.TrashActivity" />
 
         <receiver
             android:name=".receivers.ReminderReceiver"
@@ -56,6 +58,23 @@
             android:name=".database.ScheduleProvider"
             android:authorities="com.example.schedulemanager.provider"
             android:exported="false" />
+
+        <receiver
+            android:name=".widgets.ScheduleWidgetProvider"
+            android:exported="true"
+            android:label="Schedule Manager Widget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.example.schedulemanager.widgets.ACTION_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/schedule_widget_info" />
+        </receiver>
+
+        <service
+            android:name=".widgets.WidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
 
     </application>
 

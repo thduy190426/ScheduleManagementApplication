@@ -36,14 +36,12 @@ public class BackupManager {
 
         if (schedules != null) {
             for (Schedule schedule : schedules) {
-                // Try to update if exists, otherwise insert
                 if (dbHelper.getScheduleById(schedule.getId()) != null) {
                     dbHelper.updateSchedule(schedule);
                 } else {
                     long newId = dbHelper.insertSchedule(schedule);
                     schedule.setId((int) newId);
                 }
-                // Reschedule if needed
                 if (!schedule.isCompleted()) {
                     ReminderScheduler.scheduleReminder(context, schedule);
                 }

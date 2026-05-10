@@ -9,8 +9,11 @@
     <string name="tab_weekly">Hàng tuần</string>
     <string name="tab_all">Tất cả</string>
 
+    <string name="nav_header_greeting">Xin chào, %s!</string>
     <string name="nav_home">Trang chủ</string>
     <string name="nav_calendar">Lịch</string>
+    <string name="nav_statistics">Thống kê</string>
+    <string name="nav_trash">Thùng rác</string>
     <string name="nav_settings">Cài đặt</string>
     <string name="nav_backup">Sao lưu &amp; Khôi phục</string>
 
@@ -38,7 +41,6 @@
     <string name="last_backup">Sao lưu lần cuối: %s</string>
     <string name="backup_success">Sao lưu thành công!</string>
     <string name="backup_failed">Sao lưu thất bại</string>
-    <string name="restore_success">Khôi phục thành công!</string>
     <string name="restore_failed">Khôi phục thất bại</string>
 
     <string name="error_invalid_time">Giờ kết thúc phải sau giờ bắt đầu</string>
@@ -67,10 +69,160 @@
     <string name="undo">Hoàn tác</string>
     <string name="backup_never">Chưa bao giờ</string>
     <string name="error_saving_schedule">Lỗi khi lưu lịch trình</string>
+    <string name="security_category">Bảo mật</string>
+    <string name="enable_pin_title">Bật khoá bằng mã PIN</string>
+    <string name="enable_pin_summary">Yêu cầu mã PIN để mở ứng dụng</string>
+    <string name="change_pin_title">Thay đổi mã PIN</string>
+    <string name="enter_pin">Nhập mã PIN</string>
+    <string name="confirm_pin">Xác nhận mã PIN</string>
+    <string name="pin_mismatch">Mã PIN không khớp</string>
+    <string name="pin_saved">Đã lưu mã PIN thành công</string>
+    <string name="wrong_pin">Sai mã PIN. Vui lòng thử lại.</string>
+    <string name="setup_pin_title">Thiết lập mã PIN</string>
+    <string name="unlock_title">Mở khoá ứng dụng</string>
     <string name="error_loading_schedules">Lỗi khi tải lịch trình</string>
+    <string name="subtasks_label">Công việc con</string>
+    <string name="add_subtask">Thêm công việc con</string>
+    <string name="subtask_hint">Tiêu đề công việc con</string>
+    <string name="attachments_label">Tệp đính kèm</string>
+    <string name="add_attachment">Thêm hình ảnh đính kèm</string>
+    <string name="attachment_preview">Xem trước tệp đính kèm</string>
+    <string name="category_label">Danh mục</string>
+    <string name="recurrence_label">Lặp lại</string>
+    <string name="search_hint">Tìm kiếm, p:cao, d:yyyy-mm-dd...</string>
+    <string name="filter_all">Tất cả</string>
+    <string name="filter_pending">Đang chờ</string>
+    <string name="filter_completed">Hoàn thành</string>
+    <string name="statistics">Thống kê</string>
+    <string name="completion_rate">Tỷ lệ hoàn thành</string>
+    <string name="completed_vs_total">Hoàn thành: %1$d / %2$d</string>
+    <string name="no_data">Không có dữ liệu</string>
+    <string name="repeats_label">Lặp lại: %1$s</string>
+
+    <string name="trash_empty">Thùng rác trống</string>
+    <string name="restore">Khôi phục</string>
+    <string name="delete_permanently">Xóa vĩnh viễn</string>
+    <string name="trash_auto_delete_msg">Các mục trong Thùng rác sẽ bị xóa sau 7 ngày</string>
+    <string name="restore_success">Đã khôi phục lịch trình</string>
+    <string name="delete_forever_confirm">Xóa vĩnh viễn lịch trình này?</string>
+
+    <!-- Mức độ ưu tiên -->
+    <string name="priority_high">Cao</string>
+    <string name="priority_medium">Trung bình</string>
+    <string name="priority_low">Thấp</string>
+
+    <!-- Tùy chọn lặp lại -->
+    <string name="repeat_none">Không lặp lại</string>
+    <string name="repeat_daily">Hàng ngày</string>
+    <string name="repeat_weekly">Hàng tuần</string>
+    <string name="repeat_monthly">Hàng tháng</string>
+
+    <!-- Sắp xếp -->
+    <string name="sort_by">Sắp xếp theo</string>
+    <string name="sort_time">Thời gian</string>
+    <string name="sort_priority">Mức độ ưu tiên</string>
+    <string name="sort_title">Tiêu đề</string>
+    <string name="sort_smart">Ưu tiên thông minh</string>
+
+    <!-- Hộp thoại -->
+    <string name="discard_changes_title">Hủy bỏ thay đổi?</string>
+    <string name="discard_changes_msg">Bạn có thay đổi chưa lưu. Bạn có chắc chắn muốn hủy bỏ chúng không?</string>
+
+    <!-- Thông tin -->
+    <string name="about_app">Giới thiệu ứng dụng</string>
+    <string name="app_version">Phiên bản 1.0.0</string>
+    <string name="developer">Phát triển bởi [Tên của bạn]</string>
+
+    <!-- Trạng thái giao diện -->
+    <string name="overdue">Quá hạn</string>
+    <string name="no_search_results">Không có lịch trình nào khớp với tìm kiếm của bạn</string>
+    <string name="edit_category">Sửa danh mục</string>
+    <string name="delete_category">Xóa danh mục</string>
+    <string name="delete_category_msg">Bạn có chắc chắn muốn xóa danh mục này không? Các lịch trình trong danh mục này sẽ được chuyển về Mặc định.</string>
 
     <string name="language_title">Ngôn ngữ</string>
     <string name="language_summary">Chọn ngôn ngữ ưu tiên của bạn</string>
     <string name="language_en">English</string>
-    <string name="language_vi">Tiếng Việt</string>
+    <string-array name="language_entries">
+        <item>@string/language_en</item>
+        <item>@string/language_vi</item>
+    </string-array>
+
+    <string-array name="language_values">
+        <item>en</item>
+        <item>vi</item>
+    </string-array>
+
+    <string-array name="reminder_entries">
+        <item>@string/reminder_none</item>
+        <item>@string/reminder_5min</item>
+        <item>@string/reminder_10min</item>
+        <item>@string/reminder_15min</item>
+        <item>@string/reminder_30min</item>
+        <item>@string/reminder_60min</item>
+    </string-array>
+
+    <string-array name="reminder_values">
+        <item>0</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+    </string-array>
+
+    <string name="settings_user_profile">Hồ sơ người dùng</string>
+    <string name="settings_user_name">Tên người dùng</string>
+    <string name="settings_reminders">Nhắc nhở</string>
+    <string name="settings_reminder_sound">Âm thanh nhắc nhở</string>
+    <string name="settings_reminder_sound_summary">Phát âm thanh khi có thông báo</string>
+    <string name="settings_dnd">Không làm phiền</string>
+    <string name="settings_dnd_summary">Tắt thông báo trong một khoảng thời gian cụ thể</string>
+    <string name="settings_dnd_start">Thời gian bắt đầu</string>
+    <string name="settings_dnd_end">Thời gian kết thúc</string>
+    <string name="settings_default_reminder">Thời gian nhắc nhở mặc định</string>
+    <string name="settings_timezone">Múi giờ</string>
+    <string name="settings_timezone_summary">Chọn múi giờ ưu tiên của bạn</string>
+    <string name="settings_appearance">Giao diện</string>
+    <string name="settings_app_theme">Chủ đề ứng dụng</string>
+    <string name="settings_manage_categories_summary">Chỉnh sửa hoặc xóa các danh mục tùy chỉnh</string>
+    <string name="settings_about">Giới thiệu</string>
+    <string name="settings_version">Phiên bản</string>
+    <string name="settings_developer_label">Người phát triển</string>
+
+    <string-array name="theme_values">
+        <item>-1</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string name="shortcut_add_schedule_short">Thêm lịch trình</string>
+    <string name="shortcut_add_schedule_long">Thêm một lịch trình mới nhanh chóng</string>
+    <string name="select_color">Chọn màu sắc</string>
+    <string name="select_icon">Chọn biểu tượng</string>
+    <string name="upcoming_features">Tính năng sắp tới: Phân tích danh mục, Xu hướng hàng tuần</string>
+    <string name="priority">Mức độ ưu tiên</string>
+    <string name="category">Danh mục</string>
+    <string name="ok">OK</string>
+    <string name="all">Tất cả</string>
+    <string name="reset">Thiết lập lại</string>
+    <string name="advanced_filters">Bộ lọc nâng cao</string>
+    <string name="notification_reminder_msg">Nhắc nhở: Bắt đầu sau %1$d phút</string>
+    <string name="notification_action_snooze">Nhắc lại (15ph)</string>
+    <string name="notification_action_done">Hoàn thành</string>
+    <string name="focus_mode">Chế độ tập trung</string>
+    <string name="start_focus">Bắt đầu tập trung</string>
+    <string name="stop_focus">Dừng tập trung</string>
+    <string name="focus_completed">Đã hoàn thành phiên tập trung!</string>
+    <string name="focus_interrupted">Phiên tập trung bị gián đoạn</string>
+    <string name="pomodoro_timer">Hẹn giờ Pomodoro</string>
+    <string name="category_work">Công việc</string>
+    <string name="category_personal">Cá nhân</string>
+    <string name="category_study">Học tập</string>
+    <string name="category_health">Sức khỏe</string>
+    <string name="category_other">Khác</string>
+    <string name="quick_add_title">Thêm nhanh (NLP)</string>
+    <string name="quick_add_hint">Ví dụ: Họp team lúc 2h chiều mai</string>
+    <string name="quick_add_positive">Thêm</string>
+    <string name="quick_add_negative">Hủy</string>
+    <string name="quick_add_default_title">Sự kiện mới</string>
 </resources>

@@ -1,20 +1,21 @@
 package com.example.schedulemanager.models;
 
+import com.example.schedulemanager.R;
+
 public enum Recurrence {
-    NONE("None"),
-    DAILY("Daily"),
-    WEEKLY("Weekly"),
-    MONTHLY("Monthly"),
-    YEARLY("Yearly");
+    NONE(R.string.repeat_none),
+    DAILY(R.string.repeat_daily),
+    WEEKLY(R.string.repeat_weekly),
+    MONTHLY(R.string.repeat_monthly);
 
-    private final String label;
+    private final int labelResId;
 
-    Recurrence(String label) {
-        this.label = label;
+    Recurrence(int labelResId) {
+        this.labelResId = labelResId;
     }
 
-    public String getLabel() {
-        return label;
+    public int getLabelResId() {
+        return labelResId;
     }
 
     public static Recurrence fromInt(int value) {

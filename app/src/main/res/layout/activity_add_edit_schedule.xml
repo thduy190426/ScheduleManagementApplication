@@ -4,6 +4,7 @@
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_main"
     android:orientation="vertical">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -96,6 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/priority_label"
+                android:textColor="@color/text_primary"
                 android:layout_marginBottom="4dp"/>
             <Spinner
                 android:id="@+id/spinnerPriority"
@@ -107,6 +109,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/category_label"
+                android:textColor="@color/text_primary"
                 android:layout_marginBottom="4dp"/>
             <Spinner
                 android:id="@+id/spinnerCategory"
@@ -118,6 +121,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/recurrence_label"
+                android:textColor="@color/text_primary"
                 android:layout_marginBottom="4dp"/>
             <Spinner
                 android:id="@+id/spinnerRecurrence"
@@ -129,17 +133,95 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/reminder_label"
+                android:textColor="@color/text_primary"
                 android:layout_marginBottom="4dp"/>
             <Spinner
                 android:id="@+id/spinnerReminder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp" />
+                android:layout_marginBottom="16dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider_color"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/subtasks_label"
+                style="@style/TextAppearance.Material3.TitleMedium"
+                android:textColor="@color/text_primary"
+                android:layout_marginBottom="8dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSubTasks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
+
+            <Button
+                android:id="@+id/btnAddSubTask"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_subtask"
+                app:icon="@android:drawable/ic_input_add" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider_color"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/attachments_label"
+                style="@style/TextAppearance.Material3.TitleMedium"
+                android:textColor="@color/text_primary"
+                android:layout_marginBottom="8dp"/>
+
+            <FrameLayout
+                android:id="@+id/layoutAttachment"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/ivAttachment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@string/attachment_preview" />
+
+                <ImageButton
+                    android:id="@+id/btnRemoveAttachment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|end"
+                    android:layout_margin="8dp"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:tint="@color/white" />
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/btnAddAttachment"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/add_attachment"
+                app:icon="@android:drawable/ic_menu_gallery" />
 
             <Button
                 android:id="@+id/btnSave"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
                 android:text="@string/save" />
 
         </LinearLayout>

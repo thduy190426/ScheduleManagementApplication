@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.example.schedulemanager.services.ReminderService;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
+import com.example.schedulemanager.services.RescheduleWorker;
 
 public class BootReceiver extends BroadcastReceiver {
 
@@ -15,7 +17,11 @@ public class BootReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
             Log.d(TAG, "Device booted. Enqueuing work to reschedule alarms!");
-            ReminderService.enqueueWork(context, new Intent());
+            
+            OneTimeWorkRequest rescheduleRequest = new OneTimeWorkRequest.Builder(RescheduleWorker.class)
+                    .build();
+            
+            WorkManager.getInstance(context).enqueue(rescheduleRequest);
         }
     }
 }

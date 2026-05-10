@@ -7,6 +7,7 @@ import com.example.schedulemanager.utils.PreferenceManager;
 
 import android.content.Context;
 import com.example.schedulemanager.utils.LocaleHelper;
+import com.jakewharton.threetenabp.AndroidThreeTen;
 
 public class ScheduleManagerApp extends Application {
 
@@ -18,6 +19,7 @@ public class ScheduleManagerApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        AndroidThreeTen.init(this);
         NotificationHelper.createNotificationChannel(this);
         applyTheme();
     }

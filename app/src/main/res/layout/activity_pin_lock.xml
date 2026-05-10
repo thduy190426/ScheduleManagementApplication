@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    android:padding="24dp">
+
+    <ImageView
+        android:id="@+id/ivLockIcon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="64dp"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/unlock_title"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivLockIcon" />
+
+    <LinearLayout
+        android:id="@+id/layoutDots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle">
+
+        <View
+            android:id="@+id/dot1"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/pin_dot_empty" />
+
+        <View
+            android:id="@+id/dot2"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/pin_dot_empty" />
+
+        <View
+            android:id="@+id/dot3"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/pin_dot_empty" />
+
+        <View
+            android:id="@+id/dot4"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/pin_dot_empty" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/keypad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn1"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:text="1"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="24sp"
+                app:cornerRadius="40dp"
+                app:rippleColor="?attr/colorControlHighlight" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn2"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:text="2"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="24sp"
+                app:cornerRadius="40dp"
+                app:rippleColor="?attr/colorControlHighlight" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn3"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:text="3"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="24sp"
+                app:cornerRadius="40dp"
+                app:rippleColor="?attr/colorControlHighlight" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn4"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:text="4"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="24sp"
+                app:cornerRadius="40dp"
+                app:rippleColor="?attr/colorControlHighlight" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn5"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:text="5"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="24sp"
+                app:cornerRadius="40dp"
+                app:rippleColor="?attr/colorControlHighlight" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn6"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:text="6"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="24sp"
+                app:cornerRadius="40dp"
+                app:rippleColor="?attr/colorControlHighlight" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn7"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:text="7"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="24sp"
+                app:cornerRadius="40dp"
+                app:rippleColor="?attr/colorControlHighlight" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn8"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:text="8"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="24sp"
+                app:cornerRadius="40dp"
+                app:rippleColor="?attr/colorControlHighlight" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn9"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:text="9"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="24sp"
+                app:cornerRadius="40dp"
+                app:rippleColor="?attr/colorControlHighlight" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="80dp"
+                android:layout_height="80dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn0"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:text="0"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="24sp"
+                app:cornerRadius="40dp"
+                app:rippleColor="?attr/colorControlHighlight" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDelete"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:cornerRadius="40dp"
+                app:icon="@drawable/ic_delete"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="24dp"
+                app:iconTint="?attr/colorOnSurface"
+                app:rippleColor="?attr/colorControlHighlight" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

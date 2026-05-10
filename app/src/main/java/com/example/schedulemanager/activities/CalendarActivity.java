@@ -19,18 +19,31 @@ import com.example.schedulemanager.models.Schedule;
 import com.example.schedulemanager.utils.IntentKeys;
 import com.google.android.material.snackbar.Snackbar;
 
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.DayViewDecorator;
+import com.prolificinteractive.materialcalendarview.DayViewFacade;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+import com.prolificinteractive.materialcalendarview.spans.DotSpan;
+
+import org.threeten.bp.LocalDate;
+
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.app.ActivityOptionsCompat;
 
 public class CalendarActivity extends BaseActivity implements ScheduleAdapter.OnScheduleClickListener {
 
     private static final String TAG = "CalendarActivity";
 
-    private CalendarView calendarView;
+    private MaterialCalendarView calendarView;
     private RecyclerView recyclerView;
     private TextView tvEmpty;
     private ScheduleAdapter adapter;
@@ -41,17 +54,25 @@ public class CalendarActivity extends BaseActivity implements ScheduleAdapter.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
-        Log.d(TAG, "onCreate");
 
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
+            if (toolbar.getNavigationIcon() != null) {
+                toolbar.getNavigationIcon().setTint(getResources().getColor(R.color.white));
+            }
         }
-        toolbar.setNavigationOnClickListener(v -> finish());
 
-        // Handle Status Bar overlap
+        toolbar.setNavigationOnClickListener(v -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("OPEN_DRAWER", true);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            finish();
+        });
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main_layout), (v, windowInsets) -> {
             var insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(insets.left, insets.top, insets.right, insets.bottom);
@@ -69,25 +90,74 @@ public class CalendarActivity extends BaseActivity implements ScheduleAdapter.On
 
         setupSwipeToDelete();
 
-        calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
-            selectedDate = String.format(Locale.getDefault(), "%04d-%02d-%02d", year, month + 1, dayOfMonth);
+        calendarView.setOnDateChangedListener((widget, date, selected) -> {
+            selectedDate = String.format(Locale.getDefault(), "%04d-%02d-%02d", 
+                    date.getYear(), date.getMonth(), date.getDay());
             loadSchedulesForDate(selectedDate);
         });
 
-        // Load today by default
         Calendar calendar = Calendar.getInstance();
         selectedDate = String.format(Locale.getDefault(), "%04d-%02d-%02d",
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH) + 1,
                 calendar.get(Calendar.DAY_OF_MONTH));
+        
+        calendarView.setSelectedDate(LocalDate.now());
         loadSchedulesForDate(selectedDate);
+        highlightDatesWithSchedules();
+    }
+
+    private void highlightDatesWithSchedules() {
+        calendarView.removeDecorators();
+        
+        List<String> dateStrings = dbHelper.getDatesWithSchedules();
+        List<CalendarDay> calendarDays = new ArrayList<>();
+        for (String dateStr : dateStrings) {
+            try {
+                String[] parts = dateStr.split("-");
+                int year = Integer.parseInt(parts[0]);
+                int month = Integer.parseInt(parts[1]);
+                int day = Integer.parseInt(parts[2]);
+                calendarDays.add(CalendarDay.from(year, month, day));
+            } catch (Exception e) {
+                Log.e(TAG, "Error parsing date: " + dateStr, e);
+            }
+        }
+        calendarView.addDecorator(new EventDecorator(getResources().getColor(R.color.primary), calendarDays));
+    }
+
+    private class EventDecorator implements DayViewDecorator {
+        private final int color;
+        private final HashSet<CalendarDay> dates;
+
+        public EventDecorator(int color, Collection<CalendarDay> dates) {
+            this.color = color;
+            this.dates = new HashSet<>(dates);
+        }
+
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            return dates.contains(day);
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new DotSpan(8, color));
+        }
     }
 
     private void setupSwipeToDelete() {
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(
+                ItemTouchHelper.UP | ItemTouchHelper.DOWN,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                return false;
+                int fromPosition = viewHolder.getAdapterPosition();
+                int toPosition = target.getAdapterPosition();
+                
+                adapter.moveItem(fromPosition, toPosition);
+                return true;
             }
 
             @Override
@@ -97,14 +167,29 @@ public class CalendarActivity extends BaseActivity implements ScheduleAdapter.On
 
                 dbHelper.deleteSchedule(schedule.getId());
                 loadSchedulesForDate(selectedDate);
+                highlightDatesWithSchedules();
 
                 Snackbar.make(recyclerView, R.string.schedule_deleted, Snackbar.LENGTH_LONG)
                         .setAction(R.string.undo, v -> {
                             dbHelper.addSchedule(schedule);
                             loadSchedulesForDate(selectedDate);
+                            highlightDatesWithSchedules();
                         }).show();
             }
-        }).attachToRecyclerView(recyclerView);
+
+            @Override
+            public void clearView(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+                super.clearView(recyclerView, viewHolder);
+            }
+        });
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadSchedulesForDate(selectedDate);
+        highlightDatesWithSchedules();
     }
 
     private void loadSchedulesForDate(String date) {
@@ -114,10 +199,13 @@ public class CalendarActivity extends BaseActivity implements ScheduleAdapter.On
     }
 
     @Override
-    public void onScheduleClick(Schedule schedule) {
+    public void onScheduleClick(Schedule schedule, View view) {
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra(IntentKeys.EXTRA_SCHEDULE, schedule);
-        startActivity(intent);
+
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this, view, view.getTransitionName());
+        startActivity(intent, options.toBundle());
     }
 
     @Override

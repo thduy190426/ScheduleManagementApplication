@@ -1,48 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory app:title="User Profile">
+    <PreferenceCategory app:title="@string/settings_user_profile">
         <EditTextPreference
             app:key="user_name"
-            app:title="Display Name"
+            app:title="@string/settings_user_name"
             app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="Reminders">
+    <PreferenceCategory app:title="@string/settings_reminders">
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="reminder_sound"
+            app:title="@string/settings_reminder_sound"
+            app:summary="@string/settings_reminder_sound_summary" />
+
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:key="dnd_enabled"
+            app:title="@string/settings_dnd"
+            app:summary="@string/settings_dnd_summary" />
+
+        <Preference
+            app:dependency="dnd_enabled"
+            app:key="dnd_start_time"
+            app:title="@string/settings_dnd_start"
+            app:defaultValue="22:00" />
+
+        <Preference
+            app:dependency="dnd_enabled"
+            app:key="dnd_end_time"
+            app:title="@string/settings_dnd_end"
+            app:defaultValue="07:00" />
+
         <ListPreference
             app:defaultValue="0"
             app:entries="@array/reminder_entries"
             app:entryValues="@array/reminder_values"
             app:key="default_reminder"
-            app:title="Default Reminder Time"
+            app:title="@string/settings_default_reminder"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:key="timezone"
+            app:title="@string/settings_timezone"
+            app:summary="@string/settings_timezone_summary"
             app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="Appearance">
+    <PreferenceCategory app:title="@string/settings_appearance">
         <ListPreference
             app:defaultValue="en"
             app:entries="@array/language_entries"
             app:entryValues="@array/language_values"
             app:key="language"
             app:title="@string/language_title"
-            app:summary="@string/language_summary" />
+            app:useSimpleSummaryProvider="true" />
 
         <ListPreference
             app:defaultValue="-1"
             app:entries="@array/theme_entries"
             app:entryValues="@array/theme_values"
             app:key="theme_mode"
-            app:title="App Theme"
+            app:title="@string/settings_app_theme"
             app:useSimpleSummaryProvider="true" />
+
+        <Preference
+            app:key="manage_categories"
+            app:title="@string/category_label"
+            app:summary="@string/settings_manage_categories_summary" />
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="About">
+    <PreferenceCategory app:title="@string/security_category">
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:key="pin_lock_enabled"
+            app:title="@string/enable_pin_title"
+            app:summary="@string/enable_pin_summary" />
+
         <Preference
-            app:summary="1.0.0"
-            app:title="Version" />
+            app:dependency="pin_lock_enabled"
+            app:key="change_pin"
+            app:title="@string/change_pin_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/settings_about">
         <Preference
-            app:summary="Expert Android Developer"
-            app:title="Developer" />
+            app:summary="1.0"
+            app:title="@string/settings_version" />
+        <Preference
+            app:summary="VirusBetaTester"
+            app:title="@string/settings_developer_label" />
     </PreferenceCategory>
 
 </PreferenceScreen>

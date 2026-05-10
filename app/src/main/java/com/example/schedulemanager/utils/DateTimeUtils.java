@@ -1,5 +1,7 @@
 package com.example.schedulemanager.utils;
 
+import android.content.Context;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -14,12 +16,21 @@ public final class DateTimeUtils {
 
     private DateTimeUtils() {}
 
-    public static String getCurrentDate() {
-        return new SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).format(new Date());
+    public static String getCurrentDate(Context context) {
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
+        sdf.setTimeZone(getTimeZone(context));
+        return sdf.format(new Date());
     }
 
-    public static String getCurrentDateTime() {
-        return new SimpleDateFormat(DATETIME_FORMAT, Locale.getDefault()).format(new Date());
+    public static String getCurrentDateTime(Context context) {
+        SimpleDateFormat sdf = new SimpleDateFormat(DATETIME_FORMAT, Locale.getDefault());
+        sdf.setTimeZone(getTimeZone(context));
+        return sdf.format(new Date());
+    }
+
+    private static java.util.TimeZone getTimeZone(Context context) {
+        String tzId = new PreferenceManager(context).getTimezone();
+        return java.util.TimeZone.getTimeZone(tzId);
     }
 
     public static String formatDisplayDate(String dateStr) {
@@ -34,10 +45,11 @@ public final class DateTimeUtils {
         return dateStr;
     }
 
-    public static Calendar getCalendar(String date, String time) {
-        Calendar calendar = Calendar.getInstance();
+    public static Calendar getCalendar(String date, String time, Context context) {
+        Calendar calendar = Calendar.getInstance(getTimeZone(context));
         try {
             SimpleDateFormat sdf = new SimpleDateFormat(DATETIME_FORMAT, Locale.getDefault());
+            sdf.setTimeZone(getTimeZone(context));
             Date d = sdf.parse(date + " " + time);
             if (d != null) {
                 calendar.setTime(d);
@@ -59,8 +71,8 @@ public final class DateTimeUtils {
         }
     }
 
-    public static boolean isDateInPast(String date, String time) {
-        Calendar target = getCalendar(date, time);
+    public static boolean isDateInPast(String date, String time, Context context) {
+        Calendar target = getCalendar(date, time, context);
         return target.getTimeInMillis() < System.currentTimeMillis();
     }
 }

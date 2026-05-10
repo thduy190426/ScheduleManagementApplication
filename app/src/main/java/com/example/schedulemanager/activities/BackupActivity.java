@@ -25,7 +25,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.stream.Collectors;
 
-public class BackupActivity extends AppCompatActivity {
+public class BackupActivity extends BaseActivity {
 
     private static final String TAG = "BackupActivity";
 
@@ -58,7 +58,6 @@ public class BackupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_backup);
-        Log.d(TAG, "onCreate");
 
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -108,7 +107,7 @@ public class BackupActivity extends AppCompatActivity {
                     throw new IOException("Failed to open output stream");
                 }
             }
-            prefManager.setLastOpenedDate(DateTimeUtils.getCurrentDateTime());
+            prefManager.setLastOpenedDate(DateTimeUtils.getCurrentDateTime(this));
             updateLastBackupText();
             Snackbar.make(btnExport, R.string.backup_success, Snackbar.LENGTH_LONG).show();
         } catch (IOException e) {

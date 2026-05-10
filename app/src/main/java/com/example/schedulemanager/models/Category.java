@@ -3,22 +3,27 @@ package com.example.schedulemanager.models;
 import com.example.schedulemanager.R;
 
 public enum Category {
-    WORK("Work", R.color.category_work),
-    PERSONAL("Personal", R.color.category_personal),
-    STUDY("Study", R.color.category_study),
-    HEALTH("Health", R.color.category_health),
-    OTHER("Other", R.color.category_other);
+    WORK(R.string.category_work, R.color.category_work),
+    PERSONAL(R.string.category_personal, R.color.category_personal),
+    STUDY(R.string.category_study, R.color.category_study),
+    HEALTH(R.string.category_health, R.color.category_health),
+    OTHER(R.string.category_other, R.color.category_other);
 
-    private final String label;
+    private final int labelResId;
     private final int colorResId;
+    private String customLabel;
 
-    Category(String label, int colorResId) {
-        this.label = label;
+    Category(int labelResId, int colorResId) {
+        this.labelResId = labelResId;
         this.colorResId = colorResId;
     }
 
-    public String getLabel() {
-        return label;
+    public int getLabelResId() {
+        return labelResId;
+    }
+
+    public void setCustomLabel(String customLabel) {
+        this.customLabel = customLabel;
     }
 
     public int getColorResId() {

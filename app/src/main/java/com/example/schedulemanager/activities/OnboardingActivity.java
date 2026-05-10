@@ -12,7 +12,7 @@ import com.example.schedulemanager.utils.PreferenceManager;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class OnboardingActivity extends AppCompatActivity {
+public class OnboardingActivity extends BaseActivity {
 
     private static final String TAG = "OnboardingActivity";
 
@@ -25,7 +25,6 @@ public class OnboardingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboarding);
-        Log.d(TAG, "onCreate");
 
         prefManager = new PreferenceManager(this);
 

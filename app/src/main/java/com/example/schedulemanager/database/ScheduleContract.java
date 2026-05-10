@@ -27,5 +27,16 @@ public final class ScheduleContract {
         public static final String COLUMN_IS_COMPLETED = "is_completed";
         public static final String COLUMN_REMINDER_MINUTES = "reminder_minutes";
         public static final String COLUMN_CREATED_AT = "created_at";
+        public static final String COLUMN_CUSTOM_CATEGORY = "custom_category";
+        public static final String COLUMN_ATTACHMENT_PATH = "attachment_path";
+        public static final String COLUMN_IS_DELETED = "is_deleted";
+        public static final String COLUMN_DELETED_AT = "deleted_at";
+    }
+
+    public static final class SubTaskEntry implements BaseColumns {
+        public static final String TABLE_NAME = "subtasks";
+        public static final String COLUMN_SCHEDULE_ID = "schedule_id";
+        public static final String COLUMN_TITLE = "title";
+        public static final String COLUMN_IS_COMPLETED = "is_completed";
     }
 }

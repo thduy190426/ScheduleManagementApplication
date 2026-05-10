@@ -13,6 +13,14 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="Theme.ScheduleManager.AppBarOverlay" parent="ThemeOverlay.Material3.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">#CCFFFFFF</item>
+        <item name="android:editTextColor">@color/white</item>
+        <item name="android:textColorHint">#CCFFFFFF</item>
+        <item name="colorOnSurfaceVariant">@color/white</item>
+    </style>
+
     <style name="PriorityBadge">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
