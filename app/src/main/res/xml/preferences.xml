@@ -86,10 +86,10 @@
 
     <PreferenceCategory app:title="@string/settings_about">
         <Preference
-            app:summary="1.0"
+            app:summary="2.0"
             app:title="@string/settings_version" />
         <Preference
-            app:summary="VirusBetaTester"
+            app:summary="Tran Hoang Duy"
             app:title="@string/settings_developer_label" />
     </PreferenceCategory>
 
